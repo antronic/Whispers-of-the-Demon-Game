@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Athiti:wght@200;300;400;500;600;700&family=Jersey+10&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; */
+  font-family: "Athiti", sans-serif;
+
+  line-height: 1.5;
+  font-weight: 600;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+  background-image: url('/images/wall-bg-1.webp');
+  background-size: 256px;
+  /* Backgroud filter with blue */
+  background-blend-mode: screen;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+.text-shadow {
+  text-shadow: 3px 3px 1px rgba(0, 0, 0, 1);
+}
+
+/* Minecraft design */
+.input-text {
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 1px solid #000;
+  color: #fff;
+  padding: 0.5rem;
+  @apply text-2xl;
+}
+
+.jersey-10 {
+  font-family: "Jersey 10", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.athiti-extralight {
+  font-family: "Athiti", sans-serif;
+  font-weight: 200;
+  font-style: normal;
+}
+
+.athiti-light {
+  font-family: "Athiti", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.athiti-regular {
+  font-family: "Athiti", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.athiti-medium {
+  font-family: "Athiti", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.athiti-semibold {
+  font-family: "Athiti", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.athiti-bold {
+  font-family: "Athiti", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}

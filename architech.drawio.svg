@@ -1,0 +1,127 @@
+<mxfile host="65bd71144e">
+    <diagram id="aaZRj72po_L6vHOrDV-k" name="v1.0.0">
+        <mxGraphModel dx="1884" dy="1027" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="41" style="edgeStyle=orthogonalEdgeStyle;html=1;fontColor=#000000;startArrow=none;startFill=0;" edge="1" parent="1" source="3" target="4">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="360" y="310"/>
+                            <mxPoint x="360" y="270"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="43" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=-0.01;entryY=0.508;entryDx=0;entryDy=0;entryPerimeter=0;fontColor=#000000;startArrow=none;startFill=0;" edge="1" parent="1" source="3" target="42">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="User Phone" style="verticalLabelPosition=bottom;html=1;verticalAlign=top;align=center;strokeColor=none;fillColor=#00BEF2;shape=mxgraph.azure.mobile_services;pointerEvents=1;" vertex="1" parent="1">
+                    <mxGeometry x="169" y="280" width="39" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="18" style="edgeStyle=orthogonalEdgeStyle;html=1;" edge="1" parent="1" source="4" target="7">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="40" style="edgeStyle=orthogonalEdgeStyle;html=1;fontColor=#000000;startArrow=none;startFill=0;" edge="1" parent="1" source="4" target="38">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="UserPromptHandler" style="aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/iot/Function_Apps.svg;perimeter=rectanglePerimeter;imageBorder=none;" vertex="1" parent="1">
+                    <mxGeometry x="440" y="240" width="68" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="1. Name&lt;br&gt;2. Avatar Selection&lt;br&gt;3. Hero Prompt" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="212" y="247" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="Queue" style="sketch=0;aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/mscae/Service_Bus.svg;" vertex="1" parent="1">
+                    <mxGeometry x="600" y="245" width="50" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="16" style="edgeStyle=orthogonalEdgeStyle;html=1;" edge="1" parent="1" source="9" target="11">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="17" style="edgeStyle=orthogonalEdgeStyle;html=1;" edge="1" parent="1" source="9" target="7">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="26" value="pick queue" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="17">
+                    <mxGeometry x="-0.2034" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="9" value="QueuePicker" style="aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/iot/Function_Apps.svg;perimeter=rectanglePerimeter;imageBorder=none;labelPosition=center;verticalLabelPosition=top;verticalAlign=bottom;" vertex="1" parent="1">
+                    <mxGeometry x="740" y="240" width="68" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="21" style="edgeStyle=orthogonalEdgeStyle;html=1;" edge="1" parent="1" source="11" target="39">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="864" y="551.4300000000001" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="24" style="edgeStyle=orthogonalEdgeStyle;html=1;" edge="1" parent="1" source="11" target="23">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="25" value="respond" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="24">
+                    <mxGeometry x="-0.1463" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="11" value="Worker-Prompt" style="aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/iot/Function_Apps.svg;perimeter=rectanglePerimeter;imageBorder=none;" vertex="1" parent="1">
+                    <mxGeometry x="740" y="521.4300000000001" width="68" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="23" value="Queue" style="sketch=0;aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/mscae/Service_Bus.svg;" vertex="1" parent="1">
+                    <mxGeometry x="600" y="526.4300000000001" width="50" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="27" value="" style="sketch=0;aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/mscae/SignalR.svg;" vertex="1" parent="1">
+                    <mxGeometry x="385" y="601.4300000000001" width="20" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="30" style="edgeStyle=orthogonalEdgeStyle;html=1;fontColor=#5cbaf1;" edge="1" parent="1" source="28" target="29">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="28" value="&lt;font color=&quot;#000000&quot;&gt;Kiosk TV&lt;/font&gt;" style="sketch=0;pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;fillColor=#1DB8F0;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;outlineConnect=0;align=center;shape=mxgraph.office.devices.tv;fontColor=#5cbaf1;" vertex="1" parent="1">
+                    <mxGeometry x="169" y="671.4300000000001" width="59" height="45" as="geometry"/>
+                </mxCell>
+                <mxCell id="31" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=0.402;entryY=0.97;entryDx=0;entryDy=0;entryPerimeter=0;fontColor=#000000;exitX=0.478;exitY=0.016;exitDx=0;exitDy=0;exitPerimeter=0;startArrow=classic;startFill=1;" edge="1" parent="1" source="29" target="27">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="29" value="Realtime refresh&lt;br&gt;by SignalR" style="aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/app_services/App_Services.svg;fontColor=#000000;fillColor=#1DB8F0;" vertex="1" parent="1">
+                    <mxGeometry x="370" y="668.9300000000001" width="50" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="34" style="edgeStyle=orthogonalEdgeStyle;html=1;fontColor=#000000;startArrow=none;startFill=0;" edge="1" parent="1" source="32" target="23">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="35" value="pick queue" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#000000;" vertex="1" connectable="0" parent="34">
+                    <mxGeometry x="-0.293" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="36" style="edgeStyle=orthogonalEdgeStyle;html=1;fontColor=#000000;startArrow=none;startFill=0;" edge="1" parent="1" source="32" target="27">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="37" value="send to signalR" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#000000;rotation=-45;" vertex="1" connectable="0" parent="36">
+                    <mxGeometry x="-0.3775" y="-1" relative="1" as="geometry">
+                        <mxPoint x="-12" y="1" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="32" value="ResultHandler" style="aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/iot/Function_Apps.svg;perimeter=rectanglePerimeter;imageBorder=none;" vertex="1" parent="1">
+                    <mxGeometry x="440" y="521.4300000000001" width="68" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="38" value="Content filltering" style="shape=image;verticalLabelPosition=top;labelBackgroundColor=default;verticalAlign=bottom;aspect=fixed;imageAspect=0;image=https://miro.medium.com/v2/resize:fit:1200/0*FOUgwfVubOl1d2yW.jpg;clipPath=inset(20.83% 14.33% 24.58% 15.67%);labelPosition=center;align=center;" vertex="1" parent="1">
+                    <mxGeometry x="414" y="79.99999999999997" width="120" height="74.86" as="geometry"/>
+                </mxCell>
+                <mxCell id="39" value="Hero Model" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://miro.medium.com/v2/resize:fit:1200/0*FOUgwfVubOl1d2yW.jpg;clipPath=inset(20.83% 14.33% 24.58% 15.67%);" vertex="1" parent="1">
+                    <mxGeometry x="880" y="514" width="120" height="74.86" as="geometry"/>
+                </mxCell>
+                <mxCell id="45" style="edgeStyle=orthogonalEdgeStyle;html=1;fontColor=#000000;startArrow=none;startFill=0;" edge="1" parent="1" source="42" target="44">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="42" value="Avatar Generator" style="aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/iot/Function_Apps.svg;perimeter=rectanglePerimeter;imageBorder=none;" vertex="1" parent="1">
+                    <mxGeometry x="440" y="364" width="68" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="44" value="Avatar Model" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://miro.medium.com/v2/resize:fit:1200/0*FOUgwfVubOl1d2yW.jpg;clipPath=inset(20.83% 14.33% 24.58% 15.67%);" vertex="1" parent="1">
+                    <mxGeometry x="581" y="356.57" width="120" height="74.86" as="geometry"/>
+                </mxCell>
+                <mxCell id="47" value="AI Hero VS Demon Lord" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#000000;fontSize=23;labelBackgroundColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="872" y="735" width="297" height="59" as="geometry"/>
+                </mxCell>
+                <mxCell id="48" value="V. 1.0.0" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=18;fontColor=#000000;labelBackgroundColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="1068" y="784" width="78" height="34" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

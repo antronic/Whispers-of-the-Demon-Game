@@ -1,0 +1,20 @@
+{
+  "version": "2.0",
+  "logging": {
+    "applicationInsights": {
+      "samplingSettings": {
+        "isEnabled": true,
+        "excludedTypes": "Request"
+      },
+      "enableLiveMetricsFilters": true
+    }
+  },
+  "ConnectionStrings": {
+    "AzureServiceBus": "DefaultEndpointsProtocol=https;AccountName=;AccountKey=;TableEndpoint=;BlobEndpoint=;QueueEndpoint=;FileEndpoint=;",
+    "AzureWebJobsStorage": "DefaultEndpointsProtocol=https;AccountName=;AccountKey=;TableEndpoint=;BlobEndpoint=;QueueEndpoint=;FileEndpoint=;"
+  },
+  "OpenAI": {
+    "Uri": "https://jirachai-openai.openai.azure.com/",
+    "AzureKeyCredential": "eb4579cf26dd4e7ebe0482e12b6a5d91"
+  }
+}

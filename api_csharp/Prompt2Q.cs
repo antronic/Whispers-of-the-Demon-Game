@@ -10,16 +10,22 @@ namespace Ranger.AIvsDemon
     {
         private readonly ILogger<Prompt2Q> _logger;
         private readonly ServiceBusClient sbclient;
+        private readonly ServiceBusSender sbsender;
+
 
         public Prompt2Q(ILogger<Prompt2Q> logger)
         {
             _logger = logger;
             // get connectionstring from env name AzureServiceBus
-            string connectionString = Environment.GetEnvironmentVariable("AzureServiceBus");
+            string SBconnectionString = Environment.GetEnvironmentVariable("AzureServiceBus") ?? string.Empty;
 
-
-            ServiceBusClient sbclient = new ServiceBusClient(connectionString);
-            
+            var clientOptions = new ServiceBusClientOptions()
+            {
+                TransportType = ServiceBusTransportType.AmqpWebSockets
+            };
+            // init azure servicesbus client
+            sbclient = new ServiceBusClient(SBconnectionString, clientOptions);
+            sbsender = sbclient.CreateSender("CharPrompt");
 
         }
 
@@ -36,16 +42,28 @@ namespace Ranger.AIvsDemon
                 Prompt2QDTO data = await req.ReadFromJsonAsync<Prompt2QDTO>();
                 prompt = data.Prompt;
             }
-
             // add prompt to azure services bus 
-
-
-            _logger.LogInformation("C# HTTP trigger function processed a request.");
-            return new OkObjectResult("Welcome to Azure Functions!");
+            ServiceBusMessage message = new ServiceBusMessage(prompt);
+            try
+            {
+                await sbsender.SendMessageAsync(message);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error sending message to Azure Service Bus.");
+                // Handle the exception or log the error message
+            }
+            finally
+            {
+                await sbclient.DisposeAsync();
+                await sbsender.DisposeAsync();
+            }
+            
+            return new OkObjectResult("Prompt added to queue.");
         }
     }
 
-        public record Prompt2QDTO
+    public record Prompt2QDTO
     {
         public string Prompt { get; set; }
     }

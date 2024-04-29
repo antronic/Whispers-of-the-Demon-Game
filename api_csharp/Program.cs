@@ -8,6 +8,11 @@ var host = new HostBuilder()
     .ConfigureServices(services => {
         services.AddApplicationInsightsTelemetryWorkerService();
         services.ConfigureFunctionsApplicationInsights();
+        //add azure storage account
+        services.AddAzureClients(builder =>
+        {
+            builder.AddBlobServiceClient(Environment.GetEnvironmentVariable("heroGraveYardSorage"));
+        });
     })
     .Build();
 

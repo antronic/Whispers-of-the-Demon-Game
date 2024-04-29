@@ -9,6 +9,18 @@ This project demonstrates how to use Azure OpenAI Text Generation API and combin
 The game frontend is written in React TypeScript and the backend is written in C# .NET Core.
 
 
+## Technologies
+- Infrastructure: Azure
+  - [Azure OpenAI Service](https://learn.microsoft.com/en-us/azure/ai-services/openai/overview)
+  - [Azure SignalR Service](https://learn.microsoft.com/en-us/azure/azure-signalr/signalr-overview)
+  - [Azure Functions](https://learn.microsoft.com/en-us/azure/azure-functions/functions-overview)
+  - [Azure App Service](https://learn.microsoft.com/en-us/azure/app-service/overview)
+- Tools
+  - [React](https://reactjs.org/)
+  - [Emotion](https://emotion.sh/docs/introduction)
+  - [TypeScript](https://www.typescriptlang.org/)
+  - [C#](https://docs.microsoft.com/en-us/dotnet/csharp/)
+
 ### Maintainers
 - [Jirachai Chansivanon](https://github.com/antronic) - Digital Specialist, Microsoft Thailand
 - [Veeravat Jeensuksang](https://github.com/veeravat) - Customer Success Manager, Microsoft Thailand

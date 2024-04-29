@@ -61,13 +61,10 @@ namespace Ranger.AIvsDemon
                 return new OkObjectResult(e.Message);
             }
         }
-
-       
-
     }
 
-    public record AvatarGenDTO
-    {
-        public string Prompt { get; set; }
-    }
+    // public record AvatarGenDTO
+    // {
+    //     public string Prompt { get; set; }
+    // }
 }

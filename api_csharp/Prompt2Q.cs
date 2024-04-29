@@ -58,7 +58,7 @@ namespace Ranger.AIvsDemon
                 await sbclient.DisposeAsync();
                 await sbsender.DisposeAsync();
             }
-            
+
             return new OkObjectResult("Prompt added to queue.");
         }
     }

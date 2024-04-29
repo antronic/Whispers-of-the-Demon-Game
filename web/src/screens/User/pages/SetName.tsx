@@ -13,12 +13,11 @@ const SetNamePage = () => {
   const [name, setName] = useState('')
   const [isSet, setIsSet] = useState(false)
   const [generatedName, setGeneratedName] = useState<string | null>(null)
-  const signal = useSingalR('USER_MESSAGE')
+  const signal = useSingalR<any>('GENERATED_NAME')
 
   useEffect(() => {
-    console.log('signal.message', signal.message)
     if (signal.message) {
-      setGeneratedName(signal.message)
+      setGeneratedName(JSON.parse(signal.message).message)
       setIsLoading(false)
       setIsSet(true)
     }
@@ -91,7 +90,7 @@ const SetNamePage = () => {
 
       <input
         className={`
-          w-full px-2 py-1 input-text focus:outline-none
+          w-full px-2 py-1 input-text focus:outline-none mb-2
         `}
         type="text"
         value={name}
@@ -99,7 +98,7 @@ const SetNamePage = () => {
       />
 
       {/* Next button */}
-      <Button onClick={onOkClick}>
+      <Button className="mt-2" onClick={onOkClick}>
         OK
       </Button>
     </div>

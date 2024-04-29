@@ -4,11 +4,11 @@ import { HubConnection } from '@microsoft/signalr'
 
 export type SignalRStatus = 'CONNECTING' | 'CONNECTED' | 'RECONNECTING' | 'DISCONNECTED'
 
-export type SIGNAL_R_METHOD = 'broadcastMessage' | 'ReceiveMessage' | 'USER_MESSAGE'
+export type SIGNAL_R_METHOD = 'broadcastMessage' | 'ReceiveMessage' | 'GENERATED_AVATAR' | 'GENERATED_NAME' | 'USER_MESSAGE'
 
-function useSignalR(method: SIGNAL_R_METHOD) {
+function useSignalR<T>(method: SIGNAL_R_METHOD) {
   const [status, setStatus] = useState<SignalRStatus>('DISCONNECTED')
-  const [message, setMessage] = useState<string | null>(null)
+  const [message, setMessage] = useState<T | null>(null)
 
   const connection = useRef<HubConnection | null>(null)
 
@@ -26,7 +26,8 @@ function useSignalR(method: SIGNAL_R_METHOD) {
 
   useEffect(() => {
     const connection = getConnection()
-    connection?.on(method, (user, message: string) => {
+    connection?.on(method, (user, message: T) => {
+      console.log('SignalR message:', message)
       setMessage(message)
     })
   }, [])

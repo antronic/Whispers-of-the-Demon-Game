@@ -1,7 +1,5 @@
-import Hero from '@app/components/Game/Hero'
-import { css, Global } from '@emotion/react'
 import React from 'react'
-import { GlobalStyles } from 'twin.macro'
+import Hero from '@app/components/Game/Hero'
 
 export const MainStage: React.FC = () => {
 

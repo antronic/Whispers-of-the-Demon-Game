@@ -1,0 +1,26 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h2 class="text-center" style="margin-top: 0; padding-top: 30px; padding-bottom: 30px;">Azure SignalR Group Chat</h2>
+<div class="container" style="height: calc(100% - 110px);">
+    <div id="messages" style="background-color: whitesmoke; "></div>
+    <div style="width: 100%; border-left-style: ridge; border-right-style: ridge;">
+        <textarea id="message" style="width: 100%; padding: 5px 10px; border-style: hidden;"
+            placeholder="Type message and press Enter to send..."></textarea>
+    </div>
+    <div style="overflow: auto; border-style: ridge; border-top-style: hidden;">
+        <button class="btn-warning pull-right" id="echo">Echo</button>
+        <button class="btn-success pull-right" id="sendmessage">Send</button>
+    </div>
+</div>
+<div class="modal alert alert-danger fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div>Connection Error...</div>
+                <div><strong style="font-size: 1.5em;">Hit Refresh/F5</strong> to rejoin. ;)</div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,10 +1,8 @@
 import Logo from '@app/components/Logo'
-
-const NamePage = () => {
-  return (
-    <p>Name</p>
-  )
-}
+import { useUiStore } from '@app/store/ui'
+import { Frame } from '@app/components/common/Frame'
+// import MainStage from './pages/MainStage'
+import GamePage from './pages/Game'
 
 const CharacterPreviewPage = () => {
   return (
@@ -31,18 +29,32 @@ const CharacterPreviewPage = () => {
   )
 }
 
-// ====================
-interface IProps {
+export const ProjectorScreen: React.FC = () => {
+  const [page, setPage] = useUiStore((s) => [s.projectorPage, s.setProjectorPage])
 
-}
+  function routing() {
 
-export const ProjectorScreen: React.FC<IProps> = () => {
+    switch (page) {
+      case 'GAME':
+        return <GamePage/>
+
+      default:
+        return (
+          <p className="text-red-500 bg-white">Not found / Current: {page} </p>
+        )
+    }
+  }
+
   return (
-    <div className="mx-auto max-h-2/3 w-3/4 bg-zinc-300 px-6 py-6 border-4 border-black rounded-xl shadow-md">
-      <div className="text-7xl text-black">
+    <div>
+      <div className="text-[8rem] text-center text-slate-900 text-shadow mb-2">
         <Logo/>
       </div>
-      <CharacterPreviewPage/>
+    {routing()}
     </div>
+    // <Frame>
+    // </Frame>
   )
 }
+
+export default ProjectorScreen

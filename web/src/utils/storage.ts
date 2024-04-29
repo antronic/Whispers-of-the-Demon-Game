@@ -5,15 +5,19 @@ const PREFIX_STORAGE = 'WOTD'
 type InitialState = {
   TOKEN: string
   USER: object
+  SIGNAL_R_URL: string
+  SIGNAL_R_ID: string
   NAV_USER_PAGE: UIState['userPage']
-  NAV_PAGE: UIState['page']
+  NAV_PROJECTOR_PAGE: UIState['projectorPage']
 }
 
 const initialState: InitialState = {
   TOKEN: '',
   USER: {},
+  SIGNAL_R_URL: 'https://isekaisignalrhandler.azurewebsites.net',
+  SIGNAL_R_ID: '',
   NAV_USER_PAGE: 'HOME',
-  NAV_PAGE: 'HOME',
+  NAV_PROJECTOR_PAGE: 'HOME',
 }
 
 // type of initialState key
@@ -22,42 +26,7 @@ type InitialStateKey = keyof typeof initialState
 // value of initialState key
 type InitialStateValue = typeof initialState[InitialStateKey]
 
-// export const Storage = {
-//   set: (key: InitialStateKey, value: InitialStateValue) => {
-//     localStorage
-//       .setItem
-//       (`${PREFIX_STORAGE}_${key}`, JSON.stringify(value))
-//   }
-//   ,
-//   get: (key: InitialStateKey) => {
-//     const value = localStorage
-//       .getItem
-//       (`${PREFIX_STORAGE}_${key}`)
-
-//     // Try to parse JSON the value, value could be strigng or null, if it's not JSON format, return the value or initialState[key]
-//     try {
-//       return JSON.parse(value as string)
-//     } catch (error) {
-//       return value || initialState[key as InitialStateKey]
-//     }
-//   }
-//   ,
-//   remove: (key: InitialStateKey) => {
-//     localStorage
-//       .removeItem
-//       (`${PREFIX_STORAGE}_${key}`)
-//   },
-//   setup: () => {
-//     for (let key in initialState) {
-//       // console.log('Setting up storage', key, initialState[key as InitialStateKey], `${PREFIX_STORAGE}_${key}`)
-//       if (localStorage.getItem(`${PREFIX_STORAGE}_${key}`) === null) {
-//         Storage.set(`${key}` as InitialStateKey, initialState[key as InitialStateKey])
-//       }
-//     }
-//   }
-// }
-
-export class Storage {
+export class AppStorage {
   // Private non-static properties
   static value: string | null
 
@@ -69,7 +38,7 @@ export class Storage {
     const value = localStorage.getItem(`${PREFIX_STORAGE}_${key}`)
     this.value = value
 
-    console.log('value', value, typeof value)
+    // console.log('value', value, typeof value)
 
     return this
   }
@@ -91,7 +60,7 @@ export class Storage {
   static setup() {
     for (let key in initialState) {
       if (localStorage.getItem(`${PREFIX_STORAGE}_${key}`) === null) {
-        Storage.set(`${key}` as InitialStateKey, initialState[key as InitialStateKey])
+        this.set(`${key}` as InitialStateKey, initialState[key as InitialStateKey])
       }
     }
   }

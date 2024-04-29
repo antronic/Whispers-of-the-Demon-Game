@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
-import { ProjectorScreen } from './screens/projector'
+import { ProjectorScreen } from './screens/Projector/index'
 import { UserScreen } from './screens/User/index'
-import { Storage } from './utils/storage'
+import { AppStorage } from './utils/storage'
+import Debugger from './components/Debugger'
 
 // Main page
 const MainPage: React.FC = () => {
@@ -22,7 +23,7 @@ const MainPage: React.FC = () => {
 // App
 function App() {
   useEffect(() => {
-    Storage.setup()
+    AppStorage.setup()
   }, [])
 
   function routing() {
@@ -45,9 +46,12 @@ function App() {
   }
 
   return (
-    <div className="flex justify-center items-center h-screen">
-      {routing()}
-    </div>
+    <>
+      <Debugger/>
+      <div className="flex justify-center items-center h-screen">
+        {routing()}
+      </div>
+    </>
   )
 }
 

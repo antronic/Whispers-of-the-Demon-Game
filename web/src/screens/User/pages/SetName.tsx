@@ -1,8 +1,10 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { Button } from '@app/components/common/UI.tsx'
 import { useUiStore } from '@app/store/ui'
 import AnimateText from '@app/components/AnimateText'
+import * as Api from '@app/utils/api'
+import useSingalR from '@app/utils/useSignalR'
 
 const SetNamePage = () => {
   const [page, setPage] = useUiStore((s) => [s.userPage, s.setUserPage])
@@ -10,20 +12,41 @@ const SetNamePage = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [name, setName] = useState('')
   const [isSet, setIsSet] = useState(false)
-  const [generatedName, setGeneratedName] = useState<string|null>(null)
+  const [generatedName, setGeneratedName] = useState<string | null>(null)
+  const signal = useSingalR('USER_MESSAGE')
 
-  const onNext = () => {
-    setIsLoading(true)
-    setTimeout(() => {
+  useEffect(() => {
+    console.log('signal.message', signal.message)
+    if (signal.message) {
+      setGeneratedName(signal.message)
       setIsLoading(false)
       setIsSet(true)
-      setGeneratedName('Dominic')
-    }, 2000)
+    }
+  }, [signal.message])
+
+  const generateName = async () => {
+    const data = await Api.generateName(name)
+  }
+
+  const onOkClick = () => {
+    setIsLoading(true)
+    generateName()
   }
 
   const onChangeClick = () => {
+    signal.reset()
     setIsSet(false)
     setGeneratedName(null)
+  }
+
+  const onThinkAgainClick = () => {
+    signal.reset()
+    generateName()
+    setIsLoading(true)
+  }
+
+  const onGoodToMeClick = () => {
+    setPage('CHARACTER')
   }
 
   // If loading
@@ -47,9 +70,10 @@ const SetNamePage = () => {
 
       <div className="w-full h-px bg-slate-50 my-2"></div>
 
-      <div className="flex gap-x-4">
+      <div className="grid lg:grid-cols-3 gap-x-4">
         <Button className="!bg-orange-500 !text-black" onClick={onChangeClick}>Change it</Button>
-        <Button>Next</Button>
+        <Button className="!bg-blue-600" onClick={onThinkAgainClick}>Think again</Button>
+        <Button onClick={onGoodToMeClick}>Good to me!</Button>
       </div>
       </div>
     )
@@ -75,8 +99,8 @@ const SetNamePage = () => {
       />
 
       {/* Next button */}
-      <Button onClick={onNext}>
-        Next
+      <Button onClick={onOkClick}>
+        OK
       </Button>
     </div>
   )

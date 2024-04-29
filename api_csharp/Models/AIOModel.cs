@@ -19,19 +19,21 @@ namespace Ranger.AIvsDemon
 
     public record IsekaiNameDTO
     {
-        public IsekaiNameres IsekaiName { get; set; }
+        public IsekaiNameResponse IsekaiName { get; set; }
     }
 
-    public record IsekaiNameres
+    public record IsekaiNameResponse
     {
         public string message { get; set; }
-        public string name { get; set; }
+        public string generatedName { get; set; }
+        [JsonProperty("signalr_id")]
         public string Signalr_id { get; set; }
+        public string type { get; set; }
     }
 
-    public record IsekaiNameSignalRresponse
+    public record IsekaiSignalRResponse
     {
-        public IsekaiNameres data { get; set; }
+        public IsekaiNameResponse data { get; set; }
     }
     public record NameForIsekaiGenDTO
     {
@@ -41,7 +43,22 @@ namespace Ranger.AIvsDemon
 
     public record NameData
     {
+        [JsonProperty("signalr_id")]
         public string Signalr_id { get; set; }
         public string Name { get; set; }
     }
+
+    public record AvatarIsekaiGenDTO
+    {
+        [JsonProperty("Data")]
+        public AvatarData data { get; set; }
+    }
+
+    public record AvatarData
+    {
+        public string signalr_id { get; set; }
+        public string prompt { get; set; }
+    }
+
+
 }

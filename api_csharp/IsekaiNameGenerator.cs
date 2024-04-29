@@ -24,7 +24,7 @@ namespace Ranger.AIvsDemon
         }
 
         [Function("IsekaiNameGenerator")]
-        public async Task<IActionResult> RunAsync([HttpTrigger(AuthorizationLevel.Function, "post")] HttpRequest req)
+        public async Task<IActionResult> RunAsync([HttpTrigger(AuthorizationLevel.Anonymous, "post")] HttpRequest req)
         {
 
             NameForIsekaiGenDTO isekaiDTO = await req.ReadFromJsonAsync<NameForIsekaiGenDTO>();
@@ -39,7 +39,8 @@ namespace Ranger.AIvsDemon
             Like regular Japanese names, the names in this generator are in personal name.
             Return only one name.
             Return firstname only.
-            Return in JSON format: "{IsekaiName:{name}}"
+            Name must keep overall character of user input.
+            Return in JSON format: "{IsekaiName:{generatedName:name}"
             """;
             var completionOptions = new ChatCompletionsOptions
             {
@@ -53,15 +54,33 @@ namespace Ranger.AIvsDemon
             completionOptions.Messages.Add(new ChatRequestSystemMessage(systemPrompt));
             completionOptions.Messages.Add(new ChatRequestUserMessage(humanName));
 
-            ChatCompletions response = await AOAIclient.GetChatCompletionsAsync(completionOptions);
-            _logger.LogInformation(response.Choices[0].Message.Content.ToString());
-            var isekaiName = JsonSerializer.Deserialize<IsekaiNameDTO>(response.Choices[0].Message.Content.ToString());
-            IsekaiNameSignalRresponse responseMessage = new IsekaiNameSignalRresponse
+            var isError = true;
+            IsekaiNameDTO isekaiName = new IsekaiNameDTO();
+            while (isError)
             {
-                data = new IsekaiNameres
+                try
                 {
-                    message = isekaiName.IsekaiName.name,
-                    Signalr_id = isekaiDTO.data.Signalr_id
+                    ChatCompletions response = await AOAIclient.GetChatCompletionsAsync(completionOptions);
+                    _logger.LogInformation(response.Choices[0].Message.Content.ToString());
+                    isekaiName = JsonSerializer.Deserialize<IsekaiNameDTO>(response.Choices[0].Message.Content.ToString());
+                }
+                catch (System.Exception)
+                {
+                    isError = true;
+                }
+                finally
+                {
+                    isError = false;
+                }
+            }
+
+            IsekaiSignalRResponse responseMessage = new IsekaiSignalRResponse
+            {
+                data = new IsekaiNameResponse
+                {
+                    message = isekaiName.IsekaiName.generatedName,
+                    Signalr_id = isekaiDTO.data.Signalr_id,
+                    type = "GENERATED_NAME"
                 }
             };
 
@@ -71,7 +90,8 @@ namespace Ranger.AIvsDemon
                 _logger.LogInformation(json);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
                 _logger.LogInformation(content.ToString());
-                await client.PostAsync("http://localhost:5230/sendToUser", content);
+                var signalrHandlerEndpoint = Environment.GetEnvironmentVariable("signalrHandlerEndpoint");
+                await client.PostAsync($"{signalrHandlerEndpoint}/sendToUser", content);
             }
 
             isSuccessResponse isSuccess = new isSuccessResponse
@@ -81,5 +101,4 @@ namespace Ranger.AIvsDemon
             return new OkObjectResult(isSuccess);
         }
     }
-
 }

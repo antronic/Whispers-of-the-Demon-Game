@@ -45,7 +45,7 @@
 /* Minecraft design */
 .input-text {
   background-color: rgba(0, 0, 0, 0.5);
-  border: 1px solid #000;
+  border: 2px solid #000;
   color: #fff;
   padding: 0.5rem;
   @apply text-2xl;

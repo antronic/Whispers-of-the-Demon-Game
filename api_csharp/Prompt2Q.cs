@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Logging;
 using Azure.Messaging.ServiceBus;
+using System.Text.Json;
+using System.Text.Encodings.Web;
+using System.Text.Unicode;
 
 namespace Ranger.AIvsDemon
 {
@@ -29,21 +32,18 @@ namespace Ranger.AIvsDemon
 
         }
 
-        [Function("Prompt2Q")]
+        [Function("IsekaiAvatarGenerator")]
         public async Task<IActionResult> RunAsync([HttpTrigger(AuthorizationLevel.Anonymous, "post")] HttpRequest req)
         {
-
-            //get prompt from request
-            string prompt = req.Query["prompt"].ToString() ?? string.Empty;
-
-            if (prompt == string.Empty)
+            AvatarIsekaiGenDTO isekaiDTO = await req.ReadFromJsonAsync<AvatarIsekaiGenDTO>();
+            var options1 = new JsonSerializerOptions
             {
-                //get prompt from request body
-                Prompt2QDTO data = await req.ReadFromJsonAsync<Prompt2QDTO>();
-                prompt = data.Prompt;
-            }
+                Encoder = JavaScriptEncoder.Create(UnicodeRanges.All),
+                WriteIndented = true
+            };
+            var json = JsonSerializer.Serialize(isekaiDTO, options1);
             // add prompt to azure services bus 
-            ServiceBusMessage message = new ServiceBusMessage(prompt);
+            ServiceBusMessage message = new ServiceBusMessage(json);
             try
             {
                 await sbsender.SendMessageAsync(message);
@@ -59,7 +59,11 @@ namespace Ranger.AIvsDemon
                 await sbsender.DisposeAsync();
             }
 
-            return new OkObjectResult("Prompt added to queue.");
+            isSuccessResponse isSuccess = new isSuccessResponse
+            {
+                success = true
+            };
+            return new OkObjectResult(isSuccess);
         }
     }
 

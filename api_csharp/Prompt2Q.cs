@@ -10,17 +10,13 @@ namespace Ranger.AIvsDemon
     {
         private readonly ILogger<Prompt2Q> _logger;
         private readonly ServiceBusClient sbclient;
-<<<<<<< HEAD
         private readonly ServiceBusSender sbsender;
 
-=======
->>>>>>> 91b08d0dfc8a24b7aa25db4e62331209566d6351
 
         public Prompt2Q(ILogger<Prompt2Q> logger)
         {
             _logger = logger;
             // get connectionstring from env name AzureServiceBus
-<<<<<<< HEAD
             string SBconnectionString = Environment.GetEnvironmentVariable("AzureServiceBus") ?? string.Empty;
 
             var clientOptions = new ServiceBusClientOptions()
@@ -30,13 +26,6 @@ namespace Ranger.AIvsDemon
             // init azure servicesbus client
             sbclient = new ServiceBusClient(SBconnectionString, clientOptions);
             sbsender = sbclient.CreateSender("CharPrompt");
-=======
-            string connectionString = Environment.GetEnvironmentVariable("AzureServiceBus");
-
-
-            ServiceBusClient sbclient = new ServiceBusClient(connectionString);
-            
->>>>>>> 91b08d0dfc8a24b7aa25db4e62331209566d6351
 
         }
 
@@ -53,7 +42,6 @@ namespace Ranger.AIvsDemon
                 Prompt2QDTO data = await req.ReadFromJsonAsync<Prompt2QDTO>();
                 prompt = data.Prompt;
             }
-<<<<<<< HEAD
             // add prompt to azure services bus 
             ServiceBusMessage message = new ServiceBusMessage(prompt);
             try
@@ -73,22 +61,5 @@ namespace Ranger.AIvsDemon
 
             return new OkObjectResult("Prompt added to queue.");
         }
-    }
-
-    public record Prompt2QDTO
-=======
-
-            // add prompt to azure services bus 
-
-
-            _logger.LogInformation("C# HTTP trigger function processed a request.");
-            return new OkObjectResult("Welcome to Azure Functions!");
-        }
-    }
-
-        public record Prompt2QDTO
->>>>>>> 91b08d0dfc8a24b7aa25db4e62331209566d6351
-    {
-        public string Prompt { get; set; }
     }
 }

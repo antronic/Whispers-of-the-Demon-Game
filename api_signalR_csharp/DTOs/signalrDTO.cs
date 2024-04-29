@@ -17,7 +17,8 @@ namespace api_signalR_csharp.DTOs
     public record message2User
     {
         public required string message { get; set; }
-        public required string Signalr_id { get; set; }
+        public required string signalr_id { get; set; }
+        public required string type { get; set; }
     }
 
     public record UserConnection

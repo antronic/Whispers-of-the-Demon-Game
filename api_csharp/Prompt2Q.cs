@@ -62,4 +62,9 @@ namespace Ranger.AIvsDemon
             return new OkObjectResult("Prompt added to queue.");
         }
     }
+
+    public record Prompt2QDTO
+    {
+        public string Prompt { get; set; }
+    }
 }

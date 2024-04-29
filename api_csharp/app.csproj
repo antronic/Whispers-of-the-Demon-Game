@@ -34,11 +34,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Update="content/index.html">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <Using Include="System.Threading.ExecutionContext" Alias="ExecutionContext" />
   </ItemGroup>
-</Project> 
+</Project>

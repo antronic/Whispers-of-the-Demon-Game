@@ -8,15 +8,7 @@ var host = new HostBuilder()
     .ConfigureServices(services => {
         services.AddApplicationInsightsTelemetryWorkerService();
         services.ConfigureFunctionsApplicationInsights();
-        services.AddSignalR();
-        services.AddHttpClient();
-        services.AddAzureClients(builder =>
-        {
-            builder.AddServiceBusClient(Environment.GetEnvironmentVariable("AzureServiceBus"));
-        });
     })
     .Build();
 
 host.Run();
-
-

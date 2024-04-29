@@ -14,15 +14,28 @@
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
-  background-image: url('/images/wall-bg-1.webp');
-  background-size: 256px;
-  /* Backgroud filter with blue */
-  background-blend-mode: screen;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+html, body {
+
+}
+
+.projector-bg {
+  background-image: url('/images/wall-bg-1.webp');
+  background-size: 256px;
+}
+
+.bg-invert {
+  filter: blur(3px) invert(80%);
+}
+
+.bg-blackwhite {
+  filter: grayscale(100%);
 }
 
 @media (prefers-color-scheme: light) {
@@ -45,7 +58,7 @@
 /* Minecraft design */
 .input-text {
   background-color: rgba(0, 0, 0, 0.5);
-  border: 1px solid #000;
+  border: 2px solid #000;
   color: #fff;
   padding: 0.5rem;
   @apply text-2xl;
@@ -91,4 +104,49 @@
   font-family: "Athiti", sans-serif;
   font-weight: 700;
   font-style: normal;
+}
+
+/* Animation */
+
+.animate-shake {
+  animation: shaking 0.25s;
+}
+.animate-attack {
+  animation: attack 0.5s;
+}
+
+/* Shaking */
+@keyframes shaking {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  75% {
+    transform: translateX(-5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* Attack */
+/* Move forward and reverse back */
+@keyframes attack {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(20px);
+  }
+  75% {
+    transform: translateX(-50px);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }

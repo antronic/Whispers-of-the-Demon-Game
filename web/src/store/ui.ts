@@ -1,15 +1,23 @@
+import { AppStorage } from '@app/utils/storage'
 import { create } from 'zustand'
 
-interface UIState {
-  userPage: 'HOME' | 'NAME' | 'CHARACTER' | 'GAME'
-  page: 'HOME' | 'NAME' | 'ABILITY' | 'CHARACTER' | 'GAME' | 'GAME_OVER'
-  setPage: (page: UIState['page']) => void
+export interface UIState {
+  userPage: 'HOME' | 'NAME' | 'CHARACTER' | 'GAME' | 'GENERATED_NAME'
+  projectorPage: 'HOME' | 'GAME'
+  setProjectorPage: (page: UIState['projectorPage']) => void
   setUserPage: (userPage: UIState['userPage']) => void
 }
 
+
 export const useUiStore = create<UIState>((set) => ({
-  userPage: 'NAME',
-  page: 'NAME',
-  setPage: (page: UIState['page']) => set({ page }),
-  setUserPage: (userPage: UIState['userPage']) => set({ userPage }),
+  userPage: AppStorage.get('NAV_USER_PAGE').text<UIState['userPage']>() || 'HOME',
+  projectorPage: AppStorage.get('NAV_PROJECTOR_PAGE').text<UIState['projectorPage']>() || 'HOME',
+  setProjectorPage: (projectorPage: UIState['projectorPage']) => {
+    AppStorage.set('NAV_PROJECTOR_PAGE', projectorPage)
+    set({ projectorPage })
+  },
+  setUserPage: (userPage: UIState['userPage']) => {
+    AppStorage.set('NAV_USER_PAGE', userPage)
+    set({ userPage })
+  },
 }))

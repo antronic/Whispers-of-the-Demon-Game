@@ -1,8 +1,11 @@
-import { ProjectorScreen } from './screens/projector'
-import { UserScreen } from './screens/user'
+import React, { useEffect } from 'react'
+import { ProjectorScreen } from './screens/Projector/index'
+import { UserScreen } from './screens/User/index'
+import { AppStorage } from './utils/storage'
+import Debugger from './components/Debugger'
 
 // Main page
-const MainPage = () => {
+const MainPage: React.FC = () => {
   return (
     <>
       <div className="bg-white px-2 py-4">
@@ -19,6 +22,10 @@ const MainPage = () => {
 
 // App
 function App() {
+  useEffect(() => {
+    AppStorage.setup()
+  }, [])
+
   function routing() {
     // By path
     switch (location.pathname) {
@@ -39,9 +46,12 @@ function App() {
   }
 
   return (
-    <div className="flex justify-center items-center h-screen">
-      {routing()}
-    </div>
+    <>
+      <Debugger/>
+      <div className="flex justify-center items-center h-screen">
+        {routing()}
+      </div>
+    </>
   )
 }
 

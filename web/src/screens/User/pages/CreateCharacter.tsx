@@ -8,7 +8,7 @@ export const CharacterPage = () => {
   const signarR = useSignalR<any>('GENERATED_AVATAR')
   const [prompt, setPrompt] = useState<string>('')
   const [imgUrl, setImgUrl] = useState<string | null>(null)
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     if (signarR.message) {

@@ -1,0 +1,5 @@
+{
+    "appService.preDeployTask": "publish-release",
+    "appService.deploySubpath": "bin\\Release\\net8.0\\publish",
+    "appService.defaultWebAppToDeploy": "/subscriptions/aa188020-b469-41f7-8a8d-420af8951887/resourceGroups/rg-build-ai-isekai-game/providers/Microsoft.Web/sites/isekaiSignalRHandler"
+}

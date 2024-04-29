@@ -63,6 +63,7 @@
         };
         // Create a function that the hub can call to broadcast messages.
         connection.on("broadcastMessage", messageCallback);
+        connection.on("USER_MESSAGE", messageCallback);
         connection.on("echo", messageCallback);
         connection.onclose(onConnectionError);
       }
@@ -112,7 +113,7 @@
       }
 
       var connection = new signalR.HubConnectionBuilder()
-        .withUrl("/serverless")
+        .withUrl("https://isekaisignalrhandler.azurewebsites.net/serverless")
         .build();
       bindConnectionMessage(connection);
       connection.start()

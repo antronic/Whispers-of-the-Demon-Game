@@ -4,6 +4,7 @@ using api_signalR_csharp.Models;
 using Microsoft.AspNetCore.SignalR;
 using api_signalR_csharp.SignalRHub;
 using api_signalR_csharp.DTOs;
+using System.Text.Json;
 
 namespace api_signalR_csharp.Controllers;
 
@@ -38,11 +39,8 @@ public class HomeController : Controller
     [HttpPost("sendToUser")]
     public async Task<IActionResult> sendToUser([FromBody] message2UserDTO messages)
     {
-
-        await _hubContext.Clients.Client(messages.data.Signalr_id).SendAsync("broadcastMessage", "Server", messages.data.message);
-
-        // await _hubContext.Clients.Client(messages.UserconnectionId).SendAsync("broadcasttoclient",messages.message);
-
+        var serialized = JsonSerializer.Serialize(messages.data);
+        await _hubContext.Clients.Client(messages.data.signalr_id).SendAsync(messages.data.type, "Server", serialized);
         return Ok("Message sent");
     }
 }

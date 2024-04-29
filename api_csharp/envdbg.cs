@@ -18,11 +18,11 @@ namespace test.test
         [Function("envdbg")]
         public IActionResult Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post")] HttpRequest req)
         {
-            foreach (DictionaryEntry e in System.Environment.GetEnvironmentVariables())
-            {
-                Console.WriteLine(e.Key + ":" + e.Value);
-            }
-            _logger.LogInformation("C# HTTP trigger function processed a request.");
+            // foreach (DictionaryEntry e in System.Environment.GetEnvironmentVariables())
+            // {
+            //     Console.WriteLine(e.Key + ":" + e.Value);
+            // }
+            // _logger.LogInformation("C# HTTP trigger function processed a request.");
             return new OkObjectResult("Welcome to Azure Functions!");
         }
     }

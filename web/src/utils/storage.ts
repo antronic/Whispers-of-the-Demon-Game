@@ -43,6 +43,12 @@ export class AppStorage {
     return this
   }
 
+  static updateJSON<T extends object>(key: InitialStateKey, value: T) {
+    const currentValue = this.get(key).json<{}>()
+    console.log('currentValue', currentValue, typeof currentValue)
+    this.set(key, { ...currentValue, ...value })
+  }
+
   // Format value to JSON
   static json<T>(): T {
     return JSON.parse(this.value as string)

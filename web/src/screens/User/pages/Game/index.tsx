@@ -67,7 +67,10 @@ const GamePage = () => {
               </div>
 
               <hr/>
-              <Button className="mt-2 !border-black hover:!border-zinc-200" onClick={onNextPromptClick}>
+              <Button
+                className="mt-2 !border-black hover:!border-zinc-200"
+                onClick={onNextPromptClick}
+              >
                 Next prompt
               </Button>
             </div>

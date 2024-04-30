@@ -5,6 +5,7 @@ import { useUiStore } from '@app/store/ui'
 import AnimateText from '@app/components/AnimateText'
 import * as Api from '@app/utils/api'
 import useSingalR from '@app/utils/useSignalR'
+import { AppStorage } from '@app/utils/storage'
 
 const SetNamePage = () => {
   const [page, setPage] = useUiStore((s) => [s.userPage, s.setUserPage])
@@ -45,6 +46,7 @@ const SetNamePage = () => {
   }
 
   const onGoodToMeClick = () => {
+    AppStorage.set('USER', { name: generatedName })
     setPage('CHARACTER')
   }
 

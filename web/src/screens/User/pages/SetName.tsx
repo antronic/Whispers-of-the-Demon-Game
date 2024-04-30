@@ -6,6 +6,7 @@ import AnimateText from '@app/components/AnimateText'
 import * as Api from '@app/utils/api'
 import useSingalR from '@app/utils/useSignalR'
 import { AppStorage } from '@app/utils/storage'
+import { InlineIcon } from '@iconify/react/dist/iconify.js'
 
 const SetNamePage = () => {
   const [page, setPage] = useUiStore((s) => [s.userPage, s.setUserPage])
@@ -69,12 +70,21 @@ const SetNamePage = () => {
           <AnimateText text={`Ok, let me call you, ${generatedName}`} speed={20}/>
         </div>
 
-      <div className="w-full h-px bg-slate-50 my-2"></div>
+      <div className="w-full h-px bg-slate-50 mt-2 mb-4"></div>
 
-      <div className="grid lg:grid-cols-3 gap-x-4">
-        <Button className="!bg-orange-500 !text-black" onClick={onChangeClick}>Change it</Button>
-        <Button className="!bg-blue-600" onClick={onThinkAgainClick}>Think again</Button>
-        <Button onClick={onGoodToMeClick}>Good to me!</Button>
+      <div className="grid lg:grid-cols-3 gap-x-4 gap-y-2">
+        <Button className="!bg-orange-500 !text-black flex justify-center items-center gap-x-2" onClick={onChangeClick}>
+          <InlineIcon icon={'pixelarticons:edit'} />
+          Change it
+        </Button>
+        <Button className="!bg-blue-600 flex justify-center items-center gap-x-2" onClick={onThinkAgainClick}>
+          <InlineIcon icon={'pixelarticons:reload'} />
+          Think again
+        </Button>
+        <Button className="flex justify-center items-center gap-x-2" onClick={onGoodToMeClick}>
+          <InlineIcon icon={'pixelarticons:check'} />
+          <span>Good to me!</span>
+        </Button>
       </div>
       </div>
     )
@@ -100,7 +110,7 @@ const SetNamePage = () => {
       />
 
       {/* Next button */}
-      <Button className="mt-2" onClick={onOkClick}>
+      <Button disabled={name === ''} className="mt-2" onClick={onOkClick}>
         OK
       </Button>
     </div>

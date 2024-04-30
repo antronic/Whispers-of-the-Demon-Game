@@ -9,7 +9,6 @@ import { AppStorage } from '@app/utils/storage'
 import { useUiStore } from '@app/store/ui'
 
 export const CharacterPage = () => {
-  const signarR = useSignalR<any>('GENERATED_AVATAR')
   const [prompt, setPrompt] = useState<string>('')
   const [imgUrl, setImgUrl] = useState<string | null>(null)
   // const [imgUrl, setImgUrl] = useState<string | null>('https://herograveyard.azureedge.net/isekai-avatar/-hsr6ATUzUcOnnaQpjgaowi8Fs8wu02.png')
@@ -24,6 +23,8 @@ export const CharacterPage = () => {
 
   const [page, setPage] = useUiStore((s) => [s.userPage, s.setUserPage])
 
+  const signarR = useSignalR<any>('GENERATED_AVATAR')
+  // const signalRExatract = useSignalR<any>('EXTRACT_CHARACTER')
 
 
   useEffect(() => {
@@ -31,10 +32,17 @@ export const CharacterPage = () => {
       // Clear the API timeout
       clearTimeout(apiTimeout.current)
 
+      console.log('signarR.message', signarR.message)
       preloadImage(JSON.parse(signarR.message).message)
-
     }
   }, [signarR.message])
+
+  // useEffect(() => {
+  //   if (signalRExatract.message) {
+  //     console.log('signalRExatract.message', signalRExatract.message)
+  //     setPrompt(signalRExatract.message)
+  //   }
+  // }, [signalRExatract.message])
 
   const onCreateClick = () => {
     setIsLoading(true)
@@ -93,7 +101,7 @@ export const CharacterPage = () => {
         <div
           className="relative"
           onClick={() => {
-            if (!timeout.current) {
+            // if (!timeout.current) {
               setImgAnimate(true)
 
               // Set timeout to clear the animation
@@ -101,7 +109,7 @@ export const CharacterPage = () => {
                 setImgAnimate(false)
                 timeout.current = undefined
               }, 500)
-            }
+            // }
           }}
         >
 
@@ -138,11 +146,11 @@ export const CharacterPage = () => {
 
       <div className="text-3xl text-shadow mb-2 flex items-center">
         <Icon icon="pixelarticons:human" width="2rem" height="2rem" className="inline mr-2"></Icon>
-        <AnimateText inline={true} text={`Describe your character, ${user.current.name}`} />
+        <AnimateText inline={true} text={`${user.current.name}, please describe your character, occupation, weapon`} />
       </div>
 
-      <div className="text-xl">
-        <p>Sample: I'm a pink samurai with a rainbow katana riding a unicorn.</p>
+      <div className="text-xl my-2">
+        <p>Sample: <span className="bg-yellow-400/50">I'm a pink samurai with a rainbow katana riding a unicorn.</span></p>
       </div>
 
         <input
@@ -156,7 +164,7 @@ export const CharacterPage = () => {
       />
 
         {/* Minecraft button */}
-        <Button onClick={onCreateClick}>
+        <Button disabled={prompt === ''} onClick={onCreateClick}>
           Create
         </Button>
     </div>

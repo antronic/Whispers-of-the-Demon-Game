@@ -8,6 +8,7 @@ type InitialState = {
   SIGNAL_R_URL: string
   SIGNAL_R_ID: string
   GAME_STAGE: object
+  USER_ATTACK_CHAT: { history: [] }
   NAV_USER_PAGE: UIState['userPage']
   NAV_PROJECTOR_PAGE: UIState['projectorPage']
   GUID: string
@@ -28,6 +29,7 @@ const initialState: InitialState = {
   SIGNAL_R_URL: 'https://isekaisignalrhandler.azurewebsites.net',
   SIGNAL_R_ID: '',
   GAME_STAGE: {},
+  USER_ATTACK_CHAT: { history: [] },
   NAV_USER_PAGE: 'HOME',
   NAV_PROJECTOR_PAGE: 'HOME',
   GUID: uuidv4(),

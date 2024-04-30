@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react'
+import useSignalR from './useSignalR'
 
 export type GameConfig = {
   enemyHp: number
@@ -20,6 +21,8 @@ export const useGame = (config: GameConfig) => {
   const enemyMaxHp = useRef<number>(config.enemyHp)
   const [enemyHp, setEnemyHp] = useState(config.enemyHp)
   const [enemyStatus, setEnemyStatus] = useState<'idle' | 'attack' | 'defeat' | 'hit'>('idle')
+
+  const { message } = useSignalR('PROJECTOR_ATTACK')
 
   // Attack enemy
   const attack = (hero: Hero, damage: number) => {

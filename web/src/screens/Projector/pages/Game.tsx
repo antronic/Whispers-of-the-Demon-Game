@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Hero from '@app/components/Game/Hero'
 import { useGame } from '@app/utils/game'
+import useSignalR from '@app/utils/useSignalR'
+import { convertMessageToBase64 } from '@app/utils/data'
 
 type HealthBarProps = {
   maxHp: number
@@ -20,7 +22,23 @@ export const HealthBar = (props: HealthBarProps) => {
 }
 
 export const MainStage: React.FC = () => {
-  const { heros, attack, enemyStatus, enemyMaxHp, enemyHp} = useGame({ enemyHp: 100 })
+  const { heros, attack, enemyStatus, enemyMaxHp, enemyHp} = useGame({ enemyHp: 1000 })
+  const { message } = useSignalR('PROJECTOR_ATTACK')
+
+  useEffect(() => {
+    // console.log('Message:', message)
+    if (message) {
+      const data = convertMessageToBase64(message as string)
+      try {
+        const json = JSON.parse(data)
+
+        attack(json, json.damage)
+      } catch (e) {
+        console.error('Error:', e)
+      }
+      console.log('Message:', message)
+    }
+  }, [message])
 
   return (
     <>

@@ -1,11 +1,17 @@
 import React, { useState } from 'react'
 import { Button } from '@app/components/common/UI'
 import AnimateText from '@app/components/AnimateText'
+import { IntroductionPage } from './Introduction'
+import { AppStorage } from '@app/utils/storage'
 
 const GamePage = () => {
   const [prompt, setPrompt] = useState('')
   const [isLoading, setIsLoading] = useState(false)
-  const [hasResult, setHasResult] = useState(true)
+  const [hasResult, setHasResult] = useState(false)
+  const [pageIndex, setPageIndex] = useState(AppStorage.get('GAME_STAGE').json<any>()['introdction'] === true ? 1 : 0)
+
+  if (pageIndex === 0)
+    return <IntroductionPage onDone={() => setPageIndex(1)}/>
 
   const onPromptClick = () => {
     setIsLoading(true)
@@ -97,7 +103,8 @@ const GamePage = () => {
               `}
               onChange={(e) => setPrompt(e.target.value)}
               placeholder={`For example: "I attack the enemy with my sword."`}
-            >{prompt}</textarea>
+              value={prompt}
+            ></textarea>
 
             {/* Next button */}
             <Button className="mt-2" onClick={onPromptClick}>

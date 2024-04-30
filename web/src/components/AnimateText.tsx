@@ -4,9 +4,11 @@ interface IAnimateText {
   text: string
   speed?: number
   inline?: boolean
+  keepCursorBlink?: boolean
+  onDone?: () => void
 }
 
-export const AnimateText: React.FC<IAnimateText> = ({ text: fullText, speed, inline }) => {
+export const AnimateText: React.FC<IAnimateText> = ({ text: fullText, speed, inline, keepCursorBlink, onDone }) => {
     const [text, setText] = useState('')
     const [index, setIndex] = useState(0)
     const [isDone, setIsDone] = useState(false)
@@ -29,6 +31,12 @@ export const AnimateText: React.FC<IAnimateText> = ({ text: fullText, speed, inl
   }, [fullText])
 
   useEffect(() => {
+    if (isDone && onDone) {
+      onDone()
+    }
+  }, [isDone])
+
+  useEffect(() => {
       const timeout = setTimeout(() => {
         if (index >= fullText.length + 1) {
           setIsDone(true)
@@ -49,7 +57,7 @@ export const AnimateText: React.FC<IAnimateText> = ({ text: fullText, speed, inl
   return (
       <div className={`typing-effect ${inline && 'inline'}`}>
           {text}
-          { !isDone && <span className="cursor">|</span>}
+          { !isDone || keepCursorBlink && <span className="cursor animate-blink ml-1 font-bold">|</span>}
       </div>
     )
 }

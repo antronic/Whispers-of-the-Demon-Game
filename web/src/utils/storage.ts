@@ -7,8 +7,19 @@ type InitialState = {
   USER: object
   SIGNAL_R_URL: string
   SIGNAL_R_ID: string
+  GAME_STAGE: object
   NAV_USER_PAGE: UIState['userPage']
   NAV_PROJECTOR_PAGE: UIState['projectorPage']
+  GUID: string
+}
+
+function uuidv4() {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'
+    .replace(/[xy]/g, function (c) {
+        const r = Math.random() * 16 | 0,
+            v = c == 'x' ? r : (r & 0x3 | 0x8)
+        return v.toString(16)
+    })
 }
 
 const initialState: InitialState = {
@@ -16,8 +27,10 @@ const initialState: InitialState = {
   USER: {},
   SIGNAL_R_URL: 'https://isekaisignalrhandler.azurewebsites.net',
   SIGNAL_R_ID: '',
+  GAME_STAGE: {},
   NAV_USER_PAGE: 'HOME',
   NAV_PROJECTOR_PAGE: 'HOME',
+  GUID: uuidv4(),
 }
 
 // type of initialState key

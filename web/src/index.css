@@ -231,3 +231,19 @@ html, body {
     transform: translateX(0) rotate(10deg);
   }
 }
+
+.animate-blink {
+  animation: blink 0.75s steps(1, end) infinite;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

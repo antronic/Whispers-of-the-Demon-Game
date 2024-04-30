@@ -46,7 +46,7 @@ export const CharacterPage = () => {
       setIsLoading(false)
       setError('It seems that DALL-E is taking too long to respond. Please try again later.')
       clearTimeout(apiTimeout.current)
-    }, 30 * 1000)
+    }, 2 * 60 * 1000)
   }
 
   const preloadImage = (url: string) => {
@@ -83,6 +83,7 @@ export const CharacterPage = () => {
   const onAcceptClick = () => {
     // Save the avatar
     AppStorage.updateJSON('USER', { avatar: imgUrl, avatar_prompt: prompt })
+    AppStorage.updateJSON('GAME_STAGE', { introdction: false })
     setPage('GAME_PROMPT')
   }
 

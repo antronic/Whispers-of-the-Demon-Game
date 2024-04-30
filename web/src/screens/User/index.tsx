@@ -1,5 +1,4 @@
 import { useEffect } from 'react'
-import { css, Global } from '@emotion/react'
 
 import SetNamePage from './pages/SetName'
 import CharacterPage from './pages/CreateCharacter'
@@ -37,15 +36,6 @@ export const UserScreen: React.FC = () => {
   return (
     <SignalRProvider>
       <Frame>
-        {/* <Global
-          styles={css({
-            body: {
-              backgroundImage: `url('/images/wall-bg-1.webp')`,
-              backgroundSize: '256px',
-              backdropFilter: 'blur(10px)',
-            }
-          })}
-        /> */}
         {routing()}
         <div className="w-full h-full absolute z-[-1] top-0 left-0 projector-bg grayscale-[100%] blur-sm"/>
       </Frame>

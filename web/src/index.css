@@ -110,6 +110,7 @@ html, body {
 
 .animate-shake {
   animation: shaking 0.25s;
+  animation-fill-mode: both;
 }
 .animate-attack {
   animation: attack 0.5s;
@@ -121,13 +122,13 @@ html, body {
     transform: translateX(0);
   }
   25% {
-    transform: translateX(-5px);
+    transform: translateX(-10px);
   }
   50% {
-    transform: translateX(5px);
+    transform: translateX(10px);
   }
   75% {
-    transform: translateX(-5px);
+    transform: translateX(-10px);
   }
   100% {
     transform: translateX(0);
@@ -148,5 +149,101 @@ html, body {
   }
   100% {
     transform: translateX(0);
+  }
+}
+
+.animate-evelope {
+  animation: envelopeMove 1s steps(1, end) infinite;
+  /* animation-timing-function: cubic-bezier(10, 10, 20); */
+}
+
+@keyframes envelopeMove {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(40px);
+  }
+  75% {
+    transform: translateX(-40px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.animate-updown {
+  animation: updown 1s steps(1, end) infinite;
+}
+
+@keyframes updown {
+  0% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(-10px);
+  }
+  50% {
+    transform: translateY(0px);
+  }
+  75% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.animate-zoomInAndFadeOut {
+  animation: zoomInAndFadeOut 0.5s;
+  animation-fill-mode: both;
+}
+
+@keyframes zoomInAndFadeOut {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.15);
+    opacity: 0;
+  }
+}
+
+.animate-pencilWriting {
+  animation: pencilWriting 1s steps(1, end) infinite;
+}
+
+@keyframes pencilWriting {
+  0% {
+    transform: translateX(0) rotate(10deg);
+  }
+  25% {
+    transform: translateX(15px) translateY(5px) rotate(0deg);
+  }
+  50% {
+    transform: translateX(0) translateY(0px) rotate(-10deg);
+  }
+  75% {
+    transform: translateX(-15px) translateY(-5px) rotate(0deg);
+  }
+  100% {
+    transform: translateX(0) rotate(10deg);
+  }
+}
+
+.animate-blink {
+  animation: blink 0.75s steps(1, end) infinite;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }

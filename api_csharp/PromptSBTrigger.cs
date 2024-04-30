@@ -94,7 +94,7 @@ namespace Ranger.AIvsDemon
                     data = new IsekaiNameResponse
                     {
                         message = $"https://herograveyard.azureedge.net/isekai-avatar/{isekaiDTO.data.signalr_id}.png",
-                        Signalr_id = isekaiDTO.data.signalr_id,
+                        signalr_id = isekaiDTO.data.signalr_id,
                         type = "GENERATED_AVATAR"
                     }
                 };

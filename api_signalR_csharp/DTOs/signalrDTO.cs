@@ -16,14 +16,17 @@ namespace api_signalR_csharp.DTOs
     }
     public record message2User
     {
-        public required string message { get; set; }
-        public required string signalr_id { get; set; }
-        public required string type { get; set; }
+        public string message { get; set; }
+        public string signalr_id { get; set; }
+        public string type { get; set; }
+        public Guid guid { get; set; }
     }
 
     public record UserConnection
     {
-        public string UserName { set; get; }
-        public string ConnectionID { set; get; }
+        public string signalr_id { set; get; }
+        public Guid guid { set; get; }
+        public string name { get; set; }
+        public string avatar_url { get; set; }
     }
 }

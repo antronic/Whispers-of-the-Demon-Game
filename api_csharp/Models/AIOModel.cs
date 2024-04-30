@@ -27,7 +27,8 @@ namespace Ranger.AIvsDemon
         public string message { get; set; }
         public string generatedName { get; set; }
         [JsonProperty("signalr_id")]
-        public string Signalr_id { get; set; }
+        public string signalr_id { get; set; }
+        public Guid guid { get; set; }
         public string type { get; set; }
     }
 
@@ -45,7 +46,9 @@ namespace Ranger.AIvsDemon
     {
         [JsonProperty("signalr_id")]
         public string Signalr_id { get; set; }
-        public string Name { get; set; }
+        public string name { get; set; }
+        public Guid guid { get; set; }
+
     }
 
     public record AvatarIsekaiGenDTO
@@ -58,7 +61,56 @@ namespace Ranger.AIvsDemon
     {
         public string signalr_id { get; set; }
         public string prompt { get; set; }
+        public Guid guid { get; set; }
+
     }
+
+    public record PalungIsekaiGenDTO
+    {
+        [JsonProperty("Data")]
+        public PalungIsekaiData data { get; set; }
+    }
+
+    public record PalungIsekaiData
+    {
+        public string signalr_id { get; set; }
+        public string prompt { get; set; }
+        public string charactor { get; set; }
+        public List<palungHistory> history { get; set; }
+        public Guid guid { get; set; }
+
+    }
+
+    public record palungHistory
+    {
+        public string role { get; set; }
+        public string content { get; set; }
+    }
+
+    public record PalungData
+    {
+        public string signalr_id { get; set; }
+        public string prompt { get; set; }
+        public Guid guid { get; set; }
+
+    }
+
+    public record PalungDataReturn
+    {
+        public string message { get; set; }
+        public string type { get; set; }
+        public double damage { get; set; }
+        public Guid guid { get; set; }
+
+    }
+
+    public record EquipmentExtractor
+    {
+        public string character { get; set; }
+
+        public string equipment_weapon { get; set; }
+    }
+
 
 
 }

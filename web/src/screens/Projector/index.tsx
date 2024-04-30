@@ -3,6 +3,7 @@ import { useUiStore } from '@app/store/ui'
 import { Frame } from '@app/components/common/Frame'
 // import MainStage from './pages/MainStage'
 import GamePage from './pages/Game'
+import SignalRProvider from '@app/utils/signalr-hook/SignalRProvider'
 
 const CharacterPreviewPage = () => {
   return (
@@ -46,12 +47,14 @@ export const ProjectorScreen: React.FC = () => {
   }
 
   return (
-    <div>
-      <div className="text-[8rem] text-center text-slate-900 text-shadow mb-2">
-        <Logo/>
+    <SignalRProvider>
+      <div>
+        <div className="text-[8rem] text-center text-slate-900 text-shadow mb-2">
+          <Logo/>
+        </div>
+      {routing()}
       </div>
-    {routing()}
-    </div>
+    </SignalRProvider>
     // <Frame>
     // </Frame>
   )

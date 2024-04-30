@@ -28,7 +28,7 @@ namespace Ranger.AIvsDemon
         {
 
             NameForIsekaiGenDTO isekaiDTO = await req.ReadFromJsonAsync<NameForIsekaiGenDTO>();
-            var humanName = isekaiDTO.data.Name;
+            var humanName = isekaiDTO.data.name;
 
             var systemPrompt =
             """
@@ -79,14 +79,20 @@ namespace Ranger.AIvsDemon
                 data = new IsekaiNameResponse
                 {
                     message = isekaiName.IsekaiName.generatedName,
-                    Signalr_id = isekaiDTO.data.Signalr_id,
-                    type = "GENERATED_NAME"
+                    signalr_id = isekaiDTO.data.Signalr_id,
+                    type = "GENERATED_NAME",
+                    guid = isekaiDTO.data.guid
                 }
             };
 
             using (HttpClient client = new HttpClient())
             {
-                var json = JsonSerializer.Serialize(responseMessage);
+                var serializeOptions = new JsonSerializerOptions
+                {
+                    WriteIndented = true,
+                    Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+                };
+                var json = JsonSerializer.Serialize(responseMessage, serializeOptions);
                 _logger.LogInformation(json);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
                 _logger.LogInformation(content.ToString());

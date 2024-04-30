@@ -2,7 +2,7 @@ import { AppStorage } from '@app/utils/storage'
 import { create } from 'zustand'
 
 export interface UIState {
-  userPage: 'HOME' | 'NAME' | 'CHARACTER' | 'GAME' | 'GENERATED_NAME'
+  userPage: 'HOME' | 'NAME' | 'CHARACTER' | 'GAME_PROMPT' | 'GENERATED_NAME'
   projectorPage: 'HOME' | 'GAME'
   setProjectorPage: (page: UIState['projectorPage']) => void
   setUserPage: (userPage: UIState['userPage']) => void

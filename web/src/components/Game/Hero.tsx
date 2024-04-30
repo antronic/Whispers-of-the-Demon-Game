@@ -9,8 +9,6 @@ interface IHeroProps {
 export const Hero: React.FC<IHeroProps> = (props) => {
   const [isAttack, setIsAttack] = useState(false)
 
-
-
   return (
     <div className={`
       w-full
@@ -21,7 +19,7 @@ export const Hero: React.FC<IHeroProps> = (props) => {
           <p>{props.name}</p>
         </div>
       </div>
-      <img src={props.imgUrl} alt="hero" className="w-full"/>
+      <img src={props.imgUrl} alt="hero" className="w-full rounded-full"/>
     </div>
   )
 }

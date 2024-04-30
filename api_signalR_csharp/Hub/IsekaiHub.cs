@@ -19,8 +19,5 @@ namespace api_signalR_csharp.SignalRHub
         public Task Echo(string name, string message) =>
             Clients.Client(Context.ConnectionId)
                     .SendAsync("echo", name, $"{message} (echo from server)");
-
-
-
     }
 }

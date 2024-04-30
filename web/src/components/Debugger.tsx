@@ -1,7 +1,7 @@
 import { UIState, useUiStore } from '@app/store/ui'
 import { AppStorage } from '@app/utils/storage'
 
-const userPages: UIState['userPage'][] = ['HOME', 'NAME', 'CHARACTER', 'GAME', 'GENERATED_NAME']
+const userPages: UIState['userPage'][] = ['HOME', 'NAME', 'CHARACTER', 'GAME_PROMPT', 'GENERATED_NAME']
 const projectorPages: UIState['projectorPage'][] = ['HOME', 'GAME']
 
 export const Debugger = () => {

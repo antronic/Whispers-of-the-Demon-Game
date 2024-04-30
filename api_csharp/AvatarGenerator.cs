@@ -91,19 +91,19 @@ namespace Ranger.AIvsDemon
                     data = new IsekaiNameResponse
                     {
                         message = $"https://herograveyard.azureedge.net/isekai-avatar/{isekaiDTO.data.signalr_id}.png",
-                        Signalr_id = isekaiDTO.data.signalr_id,
+                        signalr_id = isekaiDTO.data.signalr_id,
                         type = "GENERATED_AVATAR"
                     }
                 };
 
                 using (HttpClient client = new HttpClient())
                 {
-                    var options1 = new JsonSerializerOptions
+                    var serializeOptions = new JsonSerializerOptions
                     {
-                        Encoder = JavaScriptEncoder.Create(UnicodeRanges.All),
-                        WriteIndented = true
+                        WriteIndented = true,
+                        Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
                     };
-                    var json = JsonSerializer.Serialize(responseMessage, options1);
+                    var json = JsonSerializer.Serialize(responseMessage, serializeOptions);
                     _logger.LogInformation(json);
                     var content = new StringContent(json, Encoding.UTF8, "application/json");
                     _logger.LogInformation(content.ToString());

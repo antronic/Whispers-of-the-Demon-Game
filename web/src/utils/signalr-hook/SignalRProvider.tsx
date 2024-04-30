@@ -6,6 +6,7 @@ import SignalRContext from './SignalRContext'
 
 const SignalRProvider = ({ children }: React.PropsWithChildren<{}>) => {
   const connection = useRef<HubConnection | null>(null)
+  const status = useRef<'CONNECTING' | 'CONNECTED' | 'RECONNECTING' | 'DISCONNECTED'>('DISCONNECTED')
 
   // useEffect(() => {
   //   const url = AppStorage.get('SIGNAL_R_URL')
@@ -52,13 +53,19 @@ const SignalRProvider = ({ children }: React.PropsWithChildren<{}>) => {
       AppStorage.set('SIGNAL_R_ID', connection.current?.connectionId as string)
 
       console.log('SignalR Connected.', connection.current?.connectionId)
+      setStatus('CONNECTED')
     } catch (error) {
+      setStatus('DISCONNECTED')
       console.error('SignalR Connection Error.', error)
     }
   }
 
+  const setStatus = (_status: 'CONNECTING' | 'CONNECTED' | 'RECONNECTING' | 'DISCONNECTED') => {
+    status.current = _status
+  }
+
   return (
-    <SignalRContext.Provider value={{ connection: connection.current, createConnection, getConnection }}>
+    <SignalRContext.Provider value={{ connection: connection.current, createConnection, getConnection, status: status.current, setStatus }}>
       {children}
     </SignalRContext.Provider>
   )

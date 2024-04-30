@@ -1,11 +1,15 @@
 using api_signalR_csharp.SignalRHub;
 using Microsoft.AspNetCore.SignalR;
+using Redisconn;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddSignalR().AddAzureSignalR();
+
+//register redis as a singleton
+builder.Services.AddSingleton<RedisConnection>(await RedisConnection.InitializeAsync(builder.Configuration.GetValue<String>("REDIS_CONNECTION_STRING")));
 
 var app = builder.Build();
 

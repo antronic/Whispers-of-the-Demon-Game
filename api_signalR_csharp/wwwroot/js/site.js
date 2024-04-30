@@ -62,6 +62,11 @@
           appendMessage(encodedName, encodedMsg);
         };
         // Create a function that the hub can call to broadcast messages.
+        connection.on("GENERATED_NAME", messageCallback);
+        connection.on("EXTRACT_CHARACTER", messageCallback);
+        connection.on("GENERATED_AVATAR", messageCallback);
+        connection.on("GENERATED_PALUNG", messageCallback);
+        
         connection.on("broadcastMessage", messageCallback);
         connection.on("USER_MESSAGE", messageCallback);
         connection.on("echo", messageCallback);
@@ -113,7 +118,8 @@
       }
 
       var connection = new signalR.HubConnectionBuilder()
-        .withUrl("https://isekaisignalrhandler.azurewebsites.net/serverless")
+        // .withUrl("https://isekaisignalrhandler.azurewebsites.net/serverless")
+        .withUrl("/serverless")
         .build();
       bindConnectionMessage(connection);
       connection.start()
